@@ -1,55 +1,51 @@
-# My first try for making a basic terminal made calculator
+# Select operator
 
-#
-operation = input('''
-What operation would you like to use:
-+ for addition
-- for substraction
-* for multiplication
-/ for devision
-''')
-    
+def sel_opt():
+    global oper
+    oper = input("Select operation(+,-,*,/): ")
 
+sel_opt()
+   
+# List of numbers
+def num_sel():
+    global num_1, num_2
+    num_1 = int(input("Please select your first number: "))
+    num_2 = int(input("Please select your second number: "))
+num_sel()
 
-# Input of the user for the numbers
-number_1 = int(input("Enter your first number: "))
-number_2 = int(input("Enter your second number: "))
+def oper_do():
+    if oper == "+":
+        print("{} + {} = ".format(num_1, num_2), end="")
+        print(num_1 + num_2)
+    elif oper == "-":
+        print("{} - {} = ".format(num_1, num_2), end="")
+        print(num_1 - num_2)
+    elif oper == "*":
+        print("{} * {} = ".format(num_1, num_2), end="")
+        print(num_1 * num_2)
+    elif oper == "/":
+        print("{} + {} = ".format(num_1, num_2), end="")
+    else:
+        print("Invalid operation")
+oper_do()
+        
+def again():
+    global sel_again        
+    sel_again = input(''' Do you wish to countinue.
+Y for yes
+N for no
+: ''')
 
-# Addition
-def addition1():
-    print('{} + {} = '.format(number_1, number_2), end="") 
-    
-# Substraction
-def substraction():
-    print('{} - {} = '.format(number_1, number_2), end="", flush=True)
-    
-
-# Devide
-def devide():
-    print('{} ÷ {} = '.format(number_1, number_2), end="", flush=True)
-    
-
-# Multiplication
-def multi():
-    print('{} * {} = '.format(number_1, number_2), end="", flush=True)
-
-
-if operation == "+":
-    addition1()
-    result_addition = number_1 + number_2
-    print(result_addition)
-elif operation == "-":
-    substraction()
-    result_sub = number_1 - number_2
-    print(result_sub)
-elif operation == "*":
-    multi()
-    result_multi = number_1 * number_2
-    print(result_multi)
-elif operation == "/":
-    devide()
-    result_dev = number_1 / number_2
-    print(result_dev)
+again()
+while sel_again == ("Y").lower():
+    sel_opt()
+    num_sel()
+    oper_do()
+    again()
+if sel_again == ("N").lower():
+    print("See you later")
 else:
-    print("Sorry, you have chosen an invalid operation")
+    again()
     
+
+
